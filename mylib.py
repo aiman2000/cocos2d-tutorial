@@ -36,8 +36,9 @@ class SwitchScene(Layer):
 
     def on_key_press(self, k, mod):
         """Switch between scenes."""
-        d = {key.LEFT:-1, key.RIGHT:+1}
-        if k in d and mod & key.MOD_COMMAND:
+        d = {key.A:-1, key.D:+1}
+        if k in d: #and mod & (key.MOD_COMMAND or mod & key.MOD_WINDOW):
+            print(k, mod)
             self.index += d[k]
             self.index %= len(self.scenes)
             scene = self.scenes[self.index]

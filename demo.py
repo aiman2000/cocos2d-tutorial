@@ -24,6 +24,19 @@ class DriveCar(cocos.actions.Driver):
         scroller.set_focus(self.target.x, self.target.y)
 
 
+class Animals(Layer):
+    is_event_handler = True
+
+    def __init__(self):
+        super(Animals, self).__init__()
+        self.bulldog = cocos.sprite.Sprite('animals/bulldog-icon.png', position=(200, 200))
+        self.add(self.bulldog)
+        self.add(cocos.sprite.Sprite('animals/turtle-icon.png', position=(400, 200)))
+        self.add(cocos.sprite.Sprite('animals/tuna-icon.png', position=(400, 400)))
+
+    def on_key_press(self, k, mod):
+        self.bulldog.x += 10
+
 def main():
     # initialize the director
     director.init(800, 600, resizable=True)
@@ -40,6 +53,7 @@ def main():
     # place all scenes in a scene list
     scenes = [
         Scene(Title('Cocos2D tutorial'), switch_layer),
+        Scene(Animals(), switch_layer),
         Scene(SwitchLayer(red, green, blue), switch_layer),
         Scene(PythonInterpreterLayer(), switch_layer),
         Scene(Mouse(), switch_layer),
